@@ -3,25 +3,39 @@ description: Lint commit messages with GitHub Actions.
 author: remarkablemark
 
 inputs:
+  checkout:
+    description: Whether to checkout the repository
+    required: false
+    default: false
+
   config:
     description: Config to enforce conventional commits
+    required: false
     default: '@commitlint/config-conventional'
 
   from:
     description: Lower end of the commit range to lint
+    required: false
     default: HEAD~1
 
   version:
     description: Version of @commitlint/cli
+    required: false
     default: latest
 
 runs:
   using: composite
   steps:
+    - name: Checkout repository
+      if: inputs.checkout == 'true'
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+
     - name: Install commitlint
       shell: bash
       run: |
-        npm install --silent --global commitlint@${{ inputs.version }}
+        npm install --silent --global commitlint@${{ toJSON(inputs.version) }}
 
         if [[ '${{ runner.debug }}' == 1 ]]; then
           commitlint --version
@@ -44,10 +58,10 @@ runs:
         )
 
         if [[ $RULES_LENGTH == 0 ]]; then
-          npm install --silent --no-save ${{ inputs.config }}
+          npm install --silent --no-save ${{ toJSON(inputs.config) }}
           cat <<'EOF' > .commitlintrc.json
           {
-            "extends": ["${{ inputs.config }}"],
+            "extends": [${{ toJSON(inputs.config) }}],
             "rules": {
               "body-max-line-length": [1, "always", 100],
               "footer-max-line-length": [1, "always", 100]
@@ -58,7 +72,7 @@ runs:
 
     - name: Run commitlint
       shell: bash
-      run: commitlint --from=${{ inputs.from }}
+      run: commitlint --from=${{ toJSON(inputs.from) }}
 
     - name: Cleanup
       shell: bash

@@ -3,19 +3,24 @@ on: [push, pull_request]
 
 jobs:
   test:
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Run action
         uses: ./
+
+      - name: Run action with checkout
+        uses: ./
+        with:
+          checkout: true
 
       - name: Run action with input `config`
         uses: ./
@@ -30,7 +35,7 @@ jobs:
       - name: Run action with input `version`
         uses: ./
         with:
-          version: 17.6.7
+          version: 19.6.0
 
       - name: Create `package.json` and `.commitlintrc.json`
         shell: bash

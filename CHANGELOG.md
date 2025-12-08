@@ -1,5 +1,37 @@
 # Changelog
 
+## [2.0.0](https://github.com/remarkablemark/commitlint/compare/v1.1.2...v2.0.0) (2025-11-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **action:** bump `actions/checkout` from 5 to 6
+
+### Features
+
+* **action:** bump actions/checkout from 5 to 6 ([#12](https://github.com/remarkablemark/commitlint/issues/12)) ([ea1d1a5](https://github.com/remarkablemark/commitlint/commit/ea1d1a57cb1513cd2ffaf2b28da945198a0a8ecc))
+
+## [1.1.2](https://github.com/remarkablemark/commitlint/compare/v1.1.1...v1.1.2) (2025-08-24)
+
+
+### Miscellaneous Chores
+
+* **deps:** bump actions/checkout from 4 to 5 ([0224f12](https://github.com/remarkablemark/commitlint/commit/0224f1236a04ac43dc65dcdeae178f5472ccf368))
+
+## [1.1.1](https://github.com/remarkablemark/commitlint/compare/v1.1.0...v1.1.1) (2025-03-26)
+
+
+### Bug Fixes
+
+* **action:** escape inputs to prevent expression injection ([1751d3e](https://github.com/remarkablemark/commitlint/commit/1751d3e6fbda26ff92a2a5ea884530a159e9f25e))
+
+## [1.1.0](https://github.com/remarkablemark/commitlint/compare/v1.0.0...v1.1.0) (2025-03-26)
+
+
+### Features
+
+* **action:** add optional input `checkout` ([684a887](https://github.com/remarkablemark/commitlint/commit/684a88725db9c8f8c4b478aaae8d1604c7f3bbe9))
+
 ## 1.0.0 (2023-08-07)
 
 

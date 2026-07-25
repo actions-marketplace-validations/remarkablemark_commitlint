@@ -40,7 +40,7 @@ See [action.yml](action.yml)
 
 ### `checkout`
 
-**Optional**: Whether to checkout the repository:
+**Optional**: Whether to checkout the repository. Defaults to `false`:
 
 ```yaml
 - uses: remarkablemark/commitlint@v2
@@ -51,7 +51,7 @@ See [action.yml](action.yml)
 Omit this input if the repository has already been checked out with all of the history:
 
 ```yaml
-- uses: actions/checkout@v4
+- uses: actions/checkout@v7
   with:
     fetch-depth: 0
 - uses: remarkablemark/commitlint@v2
